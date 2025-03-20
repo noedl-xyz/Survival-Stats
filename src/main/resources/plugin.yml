@@ -1,0 +1,7 @@
+name: Survival Stats
+version: '1.0-SNAPSHOT'
+main: xyz.noedl.survivalStats.SurvivalStats
+api-version: '1.21'
+prefix: ndl
+authors: [ NoedL ]
+website: noedl.xyyz
