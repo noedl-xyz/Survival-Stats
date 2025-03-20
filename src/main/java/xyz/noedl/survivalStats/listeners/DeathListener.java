@@ -10,7 +10,11 @@ import org.bukkit.entity.Player;
 
 public class DeathListener implements Listener {
 
-    private final PlayerDataManager playerDataManager = new PlayerDataManager();
+    private final PlayerDataManager playerDataManager;
+
+    public DeathListener(PlayerDataManager playerDataManager) {
+        this.playerDataManager = playerDataManager;
+    }
 
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
@@ -18,9 +22,11 @@ public class DeathListener implements Listener {
         PlayerData playerData = playerDataManager.getPlayerData(player);
 
         playerData.incrementDeathCount();
-        playerDataManager.savePlayerData(player);
 
         player.sendMessage("You survived for " + playerData.getDaysSurvived() + " days before dying.");
         player.sendMessage("You have died " + playerData.getDeathCount() + " times.");
+
+        playerData.resetDaysSurvived();
+        playerDataManager.savePlayerData(player);
     }
 }

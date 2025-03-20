@@ -9,5 +9,3 @@ commands:
   survivalstats:
     description: Shows your survival stats!
     usage: /<command>
-  fart:
-    usage: /<command>

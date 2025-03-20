@@ -1,22 +1,33 @@
 package xyz.noedl.survivalStats;
 
-import xyz.noedl.survivalStats.commands.FartCommand;
-import xyz.noedl.survivalStats.listeners.DeathListener;
-import xyz.noedl.survivalStats.commands.SurvivalStatsCommand;
-
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
+import xyz.noedl.survivalStats.commands.SurvivalStatsCommand;
+import xyz.noedl.survivalStats.listeners.DeathListener;
+import xyz.noedl.survivalStats.managers.PlayerDataManager;
 
 public final class SurvivalStats extends JavaPlugin {
 
+    private PlayerDataManager playerDataManager;
+
     @Override
     public void onEnable() {
-        // Plugin startup logic
+        playerDataManager = new PlayerDataManager(this);
 
-        getServer().getPluginManager().registerEvents(new DeathListener(), this);
-        getCommand("survivalstats").setExecutor(new SurvivalStatsCommand());
-        getCommand("fart").setExecutor(new FartCommand());
-        getLogger().info("SurvivalStats is enabled!");
+        getServer().getPluginManager().registerEvents(new DeathListener(playerDataManager), this);
 
+        getCommand("survivalstats").setExecutor(new SurvivalStatsCommand(playerDataManager));
+
+        getLogger().info("SurvivalTracker is enabled!");
+
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                for (org.bukkit.entity.Player player : getServer().getOnlinePlayers()) {
+                    playerDataManager.updateSurvivalDays(player);
+                }
+            }
+        }.runTaskTimer(this, 0L, 24000L); // (24000 ticks = 1 Minecraft-dag)
     }
 
     @Override

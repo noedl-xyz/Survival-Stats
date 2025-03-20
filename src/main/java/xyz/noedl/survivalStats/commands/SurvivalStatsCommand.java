@@ -1,5 +1,6 @@
 package xyz.noedl.survivalStats.commands;
 
+import org.bukkit.ChatColor;
 import xyz.noedl.survivalStats.managers.PlayerDataManager;
 import xyz.noedl.survivalStats.utils.PlayerData;
 import org.bukkit.command.Command;
@@ -9,7 +10,11 @@ import org.bukkit.entity.Player;
 
 public class SurvivalStatsCommand implements CommandExecutor  {
 
-    private final PlayerDataManager playerDataManager = new PlayerDataManager();
+    private final PlayerDataManager playerDataManager;
+
+    public SurvivalStatsCommand(PlayerDataManager playerDataManager) {
+        this.playerDataManager = playerDataManager;
+    }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -18,12 +23,14 @@ public class SurvivalStatsCommand implements CommandExecutor  {
 
             PlayerData playerData = playerDataManager.getPlayerData(player);
 
-            player.sendMessage("You have survived for " + playerData.getDaysSurvived() + " Minecraft days.");
-            player.sendMessage("You have died " + playerData.getDeathCount() + " times.");
+            player.sendMessage(ChatColor.GREEN + "Survival Stats:");
+            player.sendMessage(ChatColor.YELLOW + "Days Survived: " + ChatColor.GOLD + playerData.getDaysSurvived());
+            player.sendMessage(ChatColor.YELLOW + "Total Deaths: " + ChatColor.RED + playerData.getDeathCount());
 
             return true;
         } else {
-            sender.sendMessage("Only players can use this command.");
+            sender.sendMessage(ChatColor.RED + "This command can only be used by players.");
+
             return false;
         }
     }
