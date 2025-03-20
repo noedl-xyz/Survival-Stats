@@ -1,5 +1,6 @@
 package xyz.noedl.survivalStats.managers;
 
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import xyz.noedl.survivalStats.utils.PlayerData;
@@ -66,7 +67,12 @@ public class PlayerDataManager {
 
     public void updateSurvivalDays(Player player) {
         PlayerData playerData = getPlayerData(player);
-        playerData.incrementDaysSurvived();
-        savePlayerData(player);
+        long time = Bukkit.getServer().getWorld("world").getTime();
+        if (time == 0) {
+            playerData.incrementDaysSurvived();
+            savePlayerData(player);
+        }
     }
+
+
 }

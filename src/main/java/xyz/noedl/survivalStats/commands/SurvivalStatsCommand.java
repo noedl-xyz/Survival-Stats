@@ -25,7 +25,6 @@ public class SurvivalStatsCommand implements CommandExecutor  {
             if (args.length == 0) {
                 PlayerData playerData = playerDataManager.getPlayerData(player);
                 player.sendMessage(ChatColor.GRAY + "Overlevingsstatistieken:");
-                player.sendMessage(ChatColor.AQUA + "Speler: " + ChatColor.WHITE + player.getName());
                 player.sendMessage(ChatColor.GREEN + "Dagen Overleefd: " + ChatColor.WHITE + playerData.getDaysSurvived());
                 player.sendMessage(ChatColor.RED + "Totaal Doden: " + ChatColor.WHITE + playerData.getDeathCount());
             } else {
@@ -33,8 +32,7 @@ public class SurvivalStatsCommand implements CommandExecutor  {
 
                 if (targetPlayer != null && targetPlayer.isOnline()) {
                     PlayerData targetPlayerData = playerDataManager.getPlayerData(targetPlayer);
-                    player.sendMessage(ChatColor.GRAY + "Overlevingsstatistieken van " + targetPlayer.getName() + ":");
-                    player.sendMessage(ChatColor.AQUA + "Speler: " + ChatColor.WHITE + targetPlayer.getName());
+                    player.sendMessage(ChatColor.GRAY + "Overlevingsstatistieken van " + ChatColor.GOLD + targetPlayer.getName() + ChatColor.GRAY + ":");
                     player.sendMessage(ChatColor.GREEN + "Dagen Overleefd: " + ChatColor.WHITE + targetPlayerData.getDaysSurvived());
                     player.sendMessage(ChatColor.RED + "Totaal Doden: " + ChatColor.WHITE + targetPlayerData.getDeathCount());
                 } else {

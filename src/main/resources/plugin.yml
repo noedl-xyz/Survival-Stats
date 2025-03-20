@@ -8,4 +8,4 @@ website: noedl.xyyz
 commands:
   survivalstats:
     description: Shows your survival stats!
-    usage: /<command>
+    usage: /<command> [player]

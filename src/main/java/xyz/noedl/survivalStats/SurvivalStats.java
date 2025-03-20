@@ -27,7 +27,7 @@ public final class SurvivalStats extends JavaPlugin {
                     playerDataManager.updateSurvivalDays(player);
                 }
             }
-        }.runTaskTimer(this, 0L, 24000L); // (24000 ticks = 1 Minecraft-dag)
+        }.runTaskTimer(this, 0, 20 * 60);  // Check every minute (20 ticks per second, 60 seconds in a minute)
     }
 
     @Override
