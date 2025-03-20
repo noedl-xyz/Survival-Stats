@@ -18,6 +18,12 @@ public class PlayerDataManager {
         return playerDataMap.get(player);
     }
 
+    public void updateSurvivalDays(Player player) {
+        PlayerData playerData = getPlayerData(player);
+        playerData.incrementDaysSurvived();
+        savePlayerData(player);
+    }
+
     public void savePlayerData(Player player) {
     }
 }
