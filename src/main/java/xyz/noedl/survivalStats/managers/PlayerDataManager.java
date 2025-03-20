@@ -1,9 +1,11 @@
 package xyz.noedl.survivalStats.managers;
 
+import org.bukkit.configuration.file.YamlConfiguration;
 import xyz.noedl.survivalStats.utils.PlayerData;
 
 import org.bukkit.entity.Player;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,5 +27,18 @@ public class PlayerDataManager {
     }
 
     public void savePlayerData(Player player) {
+        YamlConfiguration config = YamlConfiguration.loadConfiguration(dataFile);
+        PlayerData playerData = playerDataMap.get(player.getName());
+
+        if (playerData != null) {
+            config.set(player.getName() + ".daysSurvived", playerData.getDaysSurvived());
+            config.set(player.getName() + ".deathCount", playerData.getDeathCount());
+        }
+
+        try {
+            config.save(dataFile);
+        } catch (IOException e) {
+            plugin.getLogger.warning("Error saving player data!");
+        }
     }
 }
