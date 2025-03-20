@@ -1,5 +1,6 @@
 package xyz.noedl.survivalStats.listeners;
 
+import org.bukkit.ChatColor;
 import xyz.noedl.survivalStats.managers.PlayerDataManager;
 import xyz.noedl.survivalStats.utils.PlayerData;
 
@@ -23,8 +24,8 @@ public class DeathListener implements Listener {
 
         playerData.incrementDeathCount();
 
-        player.sendMessage("You survived for " + playerData.getDaysSurvived() + " days before dying.");
-        player.sendMessage("You have died " + playerData.getDeathCount() + " times.");
+        player.sendMessage(ChatColor.YELLOW + "Je hebt " + ChatColor.GREEN + playerData.getDaysSurvived() + ChatColor.YELLOW + " dagen overleefd voordat je stierf.");
+        player.sendMessage(ChatColor.YELLOW + "Je bent nu in totaal " + ChatColor.RED + playerData.getDeathCount() + ChatColor.YELLOW + " keer dood gegaan!");
 
         playerData.resetDaysSurvived();
         playerDataManager.savePlayerData(player);

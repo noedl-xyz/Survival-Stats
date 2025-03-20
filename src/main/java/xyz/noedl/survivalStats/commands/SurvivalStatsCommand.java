@@ -1,5 +1,6 @@
 package xyz.noedl.survivalStats.commands;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import xyz.noedl.survivalStats.managers.PlayerDataManager;
 import xyz.noedl.survivalStats.utils.PlayerData;
@@ -21,18 +22,29 @@ public class SurvivalStatsCommand implements CommandExecutor  {
         if (sender instanceof Player) {
             Player player = (Player) sender;
 
-            PlayerData playerData = playerDataManager.getPlayerData(player);
+            if (args.length == 0) {
+                PlayerData playerData = playerDataManager.getPlayerData(player);
+                player.sendMessage(ChatColor.GRAY + "Overlevingsstatistieken:");
+                player.sendMessage(ChatColor.AQUA + "Speler: " + ChatColor.WHITE + player.getName());
+                player.sendMessage(ChatColor.GREEN + "Dagen Overleefd: " + ChatColor.WHITE + playerData.getDaysSurvived());
+                player.sendMessage(ChatColor.RED + "Totaal Doden: " + ChatColor.WHITE + playerData.getDeathCount());
+            } else {
+                Player targetPlayer = Bukkit.getPlayer(args[0]);
 
-            player.sendMessage(ChatColor.GREEN + "Survival Stats:");
-            player.sendMessage(ChatColor.YELLOW + "Days Survived: " + ChatColor.GOLD + playerData.getDaysSurvived());
-            player.sendMessage(ChatColor.YELLOW + "Total Deaths: " + ChatColor.RED + playerData.getDeathCount());
-
-            return true;
+                if (targetPlayer != null && targetPlayer.isOnline()) {
+                    PlayerData targetPlayerData = playerDataManager.getPlayerData(targetPlayer);
+                    player.sendMessage(ChatColor.GRAY + "Overlevingsstatistieken van " + targetPlayer.getName() + ":");
+                    player.sendMessage(ChatColor.AQUA + "Speler: " + ChatColor.WHITE + targetPlayer.getName());
+                    player.sendMessage(ChatColor.GREEN + "Dagen Overleefd: " + ChatColor.WHITE + targetPlayerData.getDaysSurvived());
+                    player.sendMessage(ChatColor.RED + "Totaal Doden: " + ChatColor.WHITE + targetPlayerData.getDeathCount());
+                } else {
+                    player.sendMessage(ChatColor.RED + "Speler " + args[0] + " is niet online of bestaat niet.");
+                }
+            }
         } else {
-            sender.sendMessage(ChatColor.RED + "This command can only be used by players.");
-
-            return false;
+            sender.sendMessage(ChatColor.RED + "Dit commando kan alleen gebruikt worden door spelers.");
         }
+        return true;
     }
 
 }
