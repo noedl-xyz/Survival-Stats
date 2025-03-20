@@ -1,5 +1,8 @@
 package xyz.noedl.survivalStats.listeners;
 
+import xyz.noedl.survivalStats.managers.PlayerDataManager;
+import xyz.noedl.survivalStats.utils.PlayerData;
+
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -14,7 +17,7 @@ public class DeathListener implements Listener {
         Player player = event.getEntity();
         PlayerData playerData = playerDataManager.getPlayerData(player);
 
-        playerData.IncrementDeathCount();
+        playerData.incrementDeathCount();
         playerDataManager.savePlayerData(player);
 
         player.sendMessage("You survived for " + playerData.getDaysSurvived() + " days before dying.");

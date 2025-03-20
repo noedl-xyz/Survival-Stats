@@ -6,6 +6,8 @@ prefix: ndl
 authors: [ N0edL, noedl-xyz ]
 website: noedl.xyyz
 commands:
+  survivalstats:
+    description: Shows your survival stats!
+    usage: /<command>
   fart:
-    description: Become invincible!
     usage: /<command>
