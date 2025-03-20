@@ -1,7 +1,11 @@
-name: Survival Stats
-version: '1.0-SNAPSHOT'
+name: SurvivalStats
+version: ${project.version}
 main: xyz.noedl.survivalStats.SurvivalStats
 api-version: '1.21'
 prefix: ndl
-authors: [ NoedL ]
+authors: [ N0edL, noedl-xyz ]
 website: noedl.xyyz
+commands:
+  fart:
+    description: Become invincible!
+    usage: /<command>
