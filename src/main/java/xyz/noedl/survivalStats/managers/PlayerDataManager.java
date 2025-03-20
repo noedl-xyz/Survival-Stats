@@ -67,12 +67,10 @@ public class PlayerDataManager {
 
     public void updateSurvivalDays(Player player) {
         PlayerData playerData = getPlayerData(player);
-        long time = Bukkit.getServer().getWorld("world").getTime();
-        if (time == 0) {
+        long time = Bukkit.getWorld("world").getTime();
+        if (time >= 23000 && time <= 24000) {
             playerData.incrementDaysSurvived();
             savePlayerData(player);
         }
     }
-
-
 }

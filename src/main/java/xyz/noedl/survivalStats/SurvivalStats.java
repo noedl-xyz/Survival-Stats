@@ -1,5 +1,6 @@
 package xyz.noedl.survivalStats;
 
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import xyz.noedl.survivalStats.commands.SurvivalStatsCommand;
@@ -27,7 +28,7 @@ public final class SurvivalStats extends JavaPlugin {
                     playerDataManager.updateSurvivalDays(player);
                 }
             }
-        }.runTaskTimer(this, 0, 20 * 60);  // Check every minute (20 ticks per second, 60 seconds in a minute)
+        }.runTaskTimer(this, 0, 200); //  10 seconden (100 ticks)
     }
 
     @Override
