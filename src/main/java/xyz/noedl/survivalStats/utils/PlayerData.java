@@ -10,6 +10,11 @@ public class PlayerData {
         this.deathCount = 0;
     }
 
+    public PlayerData(int daysSurvived, int deathCount) {
+        this.daysSurvived = daysSurvived;
+        this.deathCount = deathCount;
+    }
+
     public int getDaysSurvived() {
         return daysSurvived;
     }
@@ -24,5 +29,9 @@ public class PlayerData {
 
     public void incrementDaysSurvived() {
         this.daysSurvived++;
+    }
+
+    public void resetDaysSurvived() {
+        this.daysSurvived = 0;
     }
 }
