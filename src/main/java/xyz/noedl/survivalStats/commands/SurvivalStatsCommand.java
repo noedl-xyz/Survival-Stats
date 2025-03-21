@@ -24,23 +24,23 @@ public class SurvivalStatsCommand implements CommandExecutor  {
 
             if (args.length == 0) {
                 PlayerData playerData = playerDataManager.getPlayerData(player);
-                player.sendMessage(ChatColor.GRAY + "Overlevingsstatistieken:");
-                player.sendMessage(ChatColor.GREEN + "Dagen Overleefd: " + ChatColor.WHITE + playerData.getDaysSurvived());
-                player.sendMessage(ChatColor.RED + "Totaal Doden: " + ChatColor.WHITE + playerData.getDeathCount());
+                player.sendMessage(ChatColor.GRAY + "Survival Statistics:");
+                player.sendMessage(ChatColor.GREEN + "Days Survived: " + ChatColor.RESET + playerData.getDaysSurvived());
+                player.sendMessage(ChatColor.RED + "Total Deaths: " + ChatColor.RESET + playerData.getDeathCount());
             } else {
                 Player targetPlayer = Bukkit.getPlayer(args[0]);
 
                 if (targetPlayer != null && targetPlayer.isOnline()) {
                     PlayerData targetPlayerData = playerDataManager.getPlayerData(targetPlayer);
-                    player.sendMessage(ChatColor.GRAY + "Overlevingsstatistieken van " + ChatColor.GOLD + targetPlayer.getName() + ChatColor.GRAY + ":");
-                    player.sendMessage(ChatColor.GREEN + "Dagen Overleefd: " + ChatColor.WHITE + targetPlayerData.getDaysSurvived());
-                    player.sendMessage(ChatColor.RED + "Totaal Doden: " + ChatColor.WHITE + targetPlayerData.getDeathCount());
+                    player.sendMessage(ChatColor.GRAY + "Survival Statistics of " + ChatColor.GOLD + targetPlayer.getName() + ChatColor.GRAY + ":");
+                    player.sendMessage(ChatColor.GREEN + "Days Survived: " + ChatColor.RESET + targetPlayerData.getDaysSurvived());
+                    player.sendMessage(ChatColor.RED + "Total Deaths: " + ChatColor.RESET + targetPlayerData.getDeathCount());
                 } else {
-                    player.sendMessage(ChatColor.RED + "Speler " + args[0] + " is niet online of bestaat niet.");
+                    player.sendMessage(ChatColor.RED + "Player  " + args[0] + " is not online or does not exist.");
                 }
             }
         } else {
-            sender.sendMessage(ChatColor.RED + "Dit commando kan alleen gebruikt worden door spelers.");
+            sender.sendMessage(ChatColor.RED + "This command can only be used by players.");
         }
         return true;
     }

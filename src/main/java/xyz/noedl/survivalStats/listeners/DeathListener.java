@@ -24,8 +24,8 @@ public class DeathListener implements Listener {
 
         playerData.incrementDeathCount();
 
-        player.sendMessage(ChatColor.YELLOW + "Je hebt " + ChatColor.GREEN + playerData.getDaysSurvived() + ChatColor.YELLOW + " dagen overleefd voordat je stierf.");
-        player.sendMessage(ChatColor.YELLOW + "Je bent nu in totaal " + ChatColor.RED + playerData.getDeathCount() + ChatColor.YELLOW + " keer dood gegaan!");
+        player.sendMessage("You survived for " + ChatColor.GREEN + playerData.getDaysSurvived() + ChatColor.RESET + " days before you died.");
+        player.sendMessage("You have now died a total of " + ChatColor.RED + playerData.getDeathCount() + ChatColor.RESET + " times!");
 
         playerData.resetDaysSurvived();
         playerDataManager.savePlayerData(player);
