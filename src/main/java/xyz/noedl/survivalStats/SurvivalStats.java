@@ -19,8 +19,6 @@ public final class SurvivalStats extends JavaPlugin {
 
         getCommand("survivalstats").setExecutor(new SurvivalStatsCommand(playerDataManager));
 
-        getLogger().info("SurvivalTracker is enabled!");
-
         new BukkitRunnable() {
             @Override
             public void run() {
@@ -30,13 +28,5 @@ public final class SurvivalStats extends JavaPlugin {
                 }
             }
         }.runTaskTimer(this, 0L, 20L); //  (1 seconden)
-    }
-
-    @Override
-    public void onDisable() {
-        // Plugin shutdown logic
-
-        getLogger().info("SurvivalStats is disabled!");
-
     }
 }
