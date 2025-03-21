@@ -69,11 +69,8 @@ public class PlayerDataManager {
     public void updateSurvivalDays(Player player) {
         PlayerData playerData = getPlayerData(player);
         long worldTime = Bukkit.getWorlds().get(0).getTime();
-        
+
         if (worldTime < 20 ) {
-
-            Bukkit.broadcastMessage(ChatColor.GOLD + "Goedemorgen! " + ChatColor.RESET + "Het is een nieuwe dag!");
-
             playerData.incrementDaysSurvived();
             savePlayerData(player);
         }
