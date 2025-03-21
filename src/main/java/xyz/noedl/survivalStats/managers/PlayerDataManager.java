@@ -1,6 +1,7 @@
 package xyz.noedl.survivalStats.managers;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import xyz.noedl.survivalStats.utils.PlayerData;
@@ -67,8 +68,12 @@ public class PlayerDataManager {
 
     public void updateSurvivalDays(Player player) {
         PlayerData playerData = getPlayerData(player);
-        long time = Bukkit.getWorld("world").getTime();
-        if (time >= 23000 && time <= 24000) {
+        long worldTime = Bukkit.getWorlds().get(0).getTime();
+        
+        if (worldTime < 20 ) {
+
+            Bukkit.broadcastMessage(ChatColor.GOLD + "Goedemorgen! " + ChatColor.RESET + "Het is een nieuwe dag!");
+
             playerData.incrementDaysSurvived();
             savePlayerData(player);
         }

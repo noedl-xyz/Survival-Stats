@@ -24,11 +24,12 @@ public final class SurvivalStats extends JavaPlugin {
         new BukkitRunnable() {
             @Override
             public void run() {
+
                 for (org.bukkit.entity.Player player : getServer().getOnlinePlayers()) {
                     playerDataManager.updateSurvivalDays(player);
                 }
             }
-        }.runTaskTimer(this, 0, 200); //  10 seconden (100 ticks)
+        }.runTaskTimer(this, 0L, 20L); //  (1 seconden)
     }
 
     @Override
